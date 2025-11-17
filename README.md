@@ -48,6 +48,26 @@ pip install pandas numpy gitpython
 python fuzz.py
 ```
 
+### View Fuzzing Report and Logs
+
+After running `fuzz.py`, two files are generated in the project root:
+- `fuzz_results.txt` — summary of all fuzzing checks and any failures found
+- `mining_forensics.log` — detailed log output from the instrumented functions
+
+View them locally (PowerShell):
+
+```powershell
+Get-Content .\fuzz_results.txt
+Get-Content .\mining_forensics.log
+```
+
+In GitHub Actions (CI):
+- Go to your repository → Actions → pick the latest run
+- In the run page, scroll to Artifacts
+- Download `fuzz-results` and `forensics-logs`
+
+Note: These files are generated and not committed to the repo (ignored via `.gitignore`).
+
 ### Run Main Analysis
 ```bash
 cd MLForensics/MLForensics-farzana/FAME-ML

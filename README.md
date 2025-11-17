@@ -5,7 +5,10 @@
 **Team Name:** TEAM-FALL2025-SQA
 
 **Team Members:**
-- Kabro (Team Lead)
+- Thomas Brown
+-
+-
+-
 
 ## Project Description
 

@@ -14,13 +14,27 @@ import random
 import string
 import traceback
 from datetime import datetime
+import importlib.util
 
-# Add the MLForensics modules to the path
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'MLForensics', 'MLForensics-farzana', 'FAME-ML'))
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'MLForensics', 'MLForensics-farzana', 'mining'))
+# Add the MLForensics module folders to sys.path for their internal imports
+BASE_DIR = os.path.dirname(__file__)
+FAME_ML_DIR = os.path.join(BASE_DIR, 'MLForensics', 'MLForensics-farzana', 'FAME-ML')
+MINING_DIR = os.path.join(BASE_DIR, 'MLForensics', 'MLForensics-farzana', 'mining')
+sys.path.insert(0, FAME_ML_DIR)
+sys.path.insert(0, MINING_DIR)
 
-import main
-import mining
+def _load_module(module_name: str, file_path: str):
+    """Dynamically load a module from a file path to avoid import resolution issues."""
+    spec = importlib.util.spec_from_file_location(module_name, file_path)
+    if spec is None or spec.loader is None:
+        raise ImportError(f"Cannot load module {module_name} from {file_path}")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+# Dynamically load target modules by absolute path
+main = _load_module("fame_main", os.path.join(FAME_ML_DIR, 'main.py'))
+mining = _load_module("mining_mod", os.path.join(MINING_DIR, 'mining.py'))
 
 # Test results storage
 test_results = {

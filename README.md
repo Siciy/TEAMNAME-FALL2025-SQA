@@ -53,16 +53,3 @@ python fuzz.py
 cd MLForensics/MLForensics-farzana/FAME-ML
 python main.py
 ```
-
-## CI/CD
-
-This project uses GitHub Actions for continuous integration. The workflow automatically:
-- Runs fuzzing tests on every push and pull request
-- Validates code quality
-- Reports test results
-
-See `.github/workflows/ci.yml` for configuration details.
-
-## License
-
-This project is for educational purposes as part of COMP 5710/6710 coursework.

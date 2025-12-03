@@ -6,9 +6,7 @@
 
 **Team Members:**
 - Thomas Brown
--
--
--
+- Bryson Chamblee
 
 ## Project Description
 
